@@ -15,7 +15,7 @@ int main() {
    std::cout << tree.decode_letter("_..") << endl;
 
    tree.encode_text("abcdefghijklmnopqrstuvwxyz", std::cout);
-   tree.decode_text(tree.encode_text("abcdefghijklmnopqrstuvwxy"), std::cout);
+   tree.decode_text(tree.encode_text("abcdefghijklmnopqrstuvwxyz"), std::cout);
    tree.encode_text("Three blind mice, see how they run.", std::cout);
    tree.decode_text(tree.encode_text("Three blind mice, see how they run."), std::cout);
    return 0;

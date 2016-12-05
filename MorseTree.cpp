@@ -6,10 +6,18 @@ MorseTree::MorseTree() {
 
 MorseTree::MorseTree(std::istream& stream) : MorseTree() {
    std::string line;
-   while(stream >> line) {
-      map[line[0]] = line.substr(1);
-      insert(line[0],line.substr(1));
+   char chr;
+
+   std::skipws;
+   while(stream >> chr) {
+      if(stream >> line) {
+         map[chr] = line;
+         insert(chr,line);
+      }
+      else
+         throw std::runtime_error("Improper formatting: only one character on last line.");
    }
+   std::cout << map[chr] << std::endl;
 }
 
 void MorseTree::insert(const char& chr, const std::string& string) {

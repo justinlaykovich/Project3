@@ -4,6 +4,7 @@
 #include<iostream>
 #include<map>
 #include<sstream>
+#include<stdexcept>
 
 template<typename T>
 struct BTNode {
