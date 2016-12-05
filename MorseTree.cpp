@@ -1,6 +1,6 @@
 #include"MorseTree.h"
 
-MorseTree::MorseTree(char left = '.', char right = '_') {
+MorseTree::MorseTree(const char& left = '.', const char& right = '_') {
    root = new BTNode<char>;
 
    /* I allow specifying different binary codes, though ./_ is default. */
@@ -13,7 +13,7 @@ MorseTree::~MorseTree() {
    delete(root);
 }
 
-MorseTree::MorseTree(std::istream& stream, char left = '.', char right='_') : MorseTree(left,right) {
+MorseTree::MorseTree(std::istream& stream, const char& left = '.', const char& right='_') : MorseTree(left,right) {
    std::string line;
    char chr;
 
