@@ -17,8 +17,8 @@ struct BTNode {
 
 class MorseTree {
 public:
-   MorseTree();
-   MorseTree(std::istream&);
+   MorseTree(char,char);
+   MorseTree(std::istream&,char,char);
 
    void insert(const char&, const std::string&);
 
@@ -30,7 +30,15 @@ public:
 
    std::string encode_text(const std::string&);
    void encode_text(const std::string&, std::ostream&);
+
+   std::string print_tree();
+   std::string print_tree(BTNode<char>*,std::ostringstream&);
+   void print_tree(std::ostream&);
 private:
+   char RIGHT;
+   char LEFT;
+   char DELIM_LETTER;
+   char DELIM_WORD;
    BTNode<char>* root;
    std::map<char,std::string> map;
 };
