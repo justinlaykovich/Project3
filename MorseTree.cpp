@@ -9,6 +9,10 @@ MorseTree::MorseTree(char left = '.', char right = '_') {
    LEFT = left;
 }
 
+MorseTree::~MorseTree() {
+   delete(root);
+}
+
 MorseTree::MorseTree(std::istream& stream, char left = '.', char right='_') : MorseTree(left,right) {
    std::string line;
    char chr;
@@ -61,21 +65,22 @@ void MorseTree::insert(const char& chr, const std::string& string) {
    curr->data = chr;
 }
 
-std::string MorseTree::encode_letter(const char& chr) {
+std::string MorseTree::encode_letter(const char& chr) const {
 
    /*
       It is assumed that a lowercase letter is code-equivalent to
       an upper case letter unless specified.
    */
+   auto find = map.find(chr);
 
-   std::string ret = map[chr];
-   if(ret == "")
-      return map[tolower(chr)];
-   else
-      return ret;
+   if(find == map.end())
+      if(find = map.find(tolower(chr)), find == map.end())
+         return "";
+
+   return find->second;
 }
 
-char MorseTree::decode_letter(const std::string& string) {
+char MorseTree::decode_letter(const std::string& string) const {
    size_t size = string.size();
    BTNode<char>* curr = root;
    if(size == 0)
@@ -89,13 +94,13 @@ char MorseTree::decode_letter(const std::string& string) {
    for(int i = 0; i < size; i++) {
       if(string[i] == LEFT) {
          if(curr->left == NULL)
-            throw;
+            throw std::runtime_error("Decoding failed: code does not map onto character.");
 
          curr = curr->left;
       }
       else if(string[i] == RIGHT) {
          if(curr->right == NULL)
-            throw;
+            throw std::runtime_error("Decoding failed: code does not map onto character.");
 
          curr = curr->right;
       }
@@ -106,11 +111,11 @@ char MorseTree::decode_letter(const std::string& string) {
    return curr->data;
 }
 
-void MorseTree::encode_text(const std::string& str, std::ostream& out) {
+void MorseTree::encode_text(const std::string& str, std::ostream& out) const {
    out << encode_text(str) << std::endl;
 }
 
-std::string MorseTree::encode_text(const std::string& str) {
+std::string MorseTree::encode_text(const std::string& str) const {
    std::istringstream istr(str);
    std::ostringstream ostr;
    char chr;
@@ -125,11 +130,11 @@ std::string MorseTree::encode_text(const std::string& str) {
    return ostr.str();
 }
 
-void MorseTree::decode_text(const std::string& str, std::ostream& out) {
+void MorseTree::decode_text(const std::string& str, std::ostream& out) const {
    out << decode_text(str) << std::endl;
 }
 
-std::string MorseTree::decode_text(const std::string& str) {
+std::string MorseTree::decode_text(const std::string& str) const {
    std::istringstream istr(str);
    std::ostringstream ostr;
    std::string word;
@@ -145,19 +150,19 @@ std::string MorseTree::decode_text(const std::string& str) {
 }
 
 /* To output directly */
-void MorseTree::print_tree(std::ostream& out) {
+void MorseTree::print_tree(std::ostream& out) const {
    std::cout << print_tree() << std::endl;
 }
 
 /* Wrapper function */
-std::string MorseTree::print_tree() {
+std::string MorseTree::print_tree() const {
    std::ostringstream ostr;
    BTNode<char>* local_root = root;
    print_tree(local_root,ostr);
    return ostr.str();
 }
 
-std::string MorseTree::print_tree(BTNode<char>* local_root, std::ostringstream& ostr) {
+std::string MorseTree::print_tree(BTNode<char>* local_root, std::ostringstream& ostr) const {
    if(local_root == NULL) {
       ostr << "NULL" << std::endl;
       return ostr.str();
