@@ -64,18 +64,37 @@ char MorseTree::decode_letter(const std::string& string) {
 }
 
 void MorseTree::encode_text(const std::string& str, std::ostream& out) {
-   out << encode_text(str) << endl;
+   out << encode_text(str) << std::endl;
 }
 
-std::string MorseTree::encode_text(const std::string& str, std::ostream& out) {
+std::string MorseTree::encode_text(const std::string& str) {
    std::istringstream istr(str);
    std::ostringstream ostr;
    char chr;
+   istr >> std::noskipws;
    while(istr >> chr) {
       if(chr == ' ')
-         ostr << '/';
+         ostr << " / ";
       else
-         ostr << encode_letter(chr);
+         ostr << encode_letter(chr) << ' ';
+   }
+   return ostr.str();
+}
+
+void MorseTree::decode_text(const std::string& str, std::ostream& out) {
+   out << decode_text(str) << std::endl;
+}
+
+std::string MorseTree::decode_text(const std::string& str) {
+   std::istringstream istr(str);
+   std::ostringstream ostr;
+   std::string word;
+   istr >> std::skipws;
+   while(istr >> word) {
+      if(word == "/")
+         ostr << " ";
+      else
+         ostr << decode_letter(word);
    }
    return ostr.str();
 }

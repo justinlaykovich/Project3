@@ -22,10 +22,13 @@ public:
    void insert(const char&, const std::string&);
 
    char decode_letter(const std::string&);
-   std::string decode_text(const std::string&, std::ostream&);
-
    std::string encode_letter(const char&);
-   std::string encode_text(const std::string&, std::ostream&);
+
+   std::string decode_text(const std::string&);
+   void decode_text(const std::string&, std::ostream&);
+
+   std::string encode_text(const std::string&);
+   void encode_text(const std::string&, std::ostream&);
 private:
    BTNode<char>* root;
    std::map<char,std::string> map;
