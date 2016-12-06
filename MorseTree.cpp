@@ -23,7 +23,7 @@ MorseTree::MorseTree(std::istream& stream, const char& left = '.', const char& r
       O(n log(n))
    */
 
-   std::skipws;
+   stream >> std::skipws;
    while(stream >> chr) {
       if(stream >> line) {
          map[chr] = line;
@@ -45,7 +45,7 @@ void MorseTree::insert(const char& chr, const std::string& string) {
       as they are logically equivalent for a well-balanced tree.
    */
 
-   for(int i = 0; i < size; i++) {
+   for(size_t i = 0; i < size; i++) {
       if(string[i] == LEFT) {
          if(curr->left == NULL)
             curr->left = new BTNode<char>;
@@ -91,7 +91,7 @@ char MorseTree::decode_letter(const std::string& string) const {
       right or left, print code if valid and non-empty. 
    */
 
-   for(int i = 0; i < size; i++) {
+   for(size_t i = 0; i < size; i++) {
       if(string[i] == LEFT) {
          if(curr->left == NULL)
             throw std::runtime_error("Decoding failed: code does not map onto character.");
