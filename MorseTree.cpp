@@ -7,6 +7,7 @@
 #include"MorseTree.h"
 
 MorseTree::MorseTree(const char& left = '.', const char& right = '_') {
+
    /* Allows declaration of different binary code. */
 
    RIGHT = right;
@@ -51,6 +52,7 @@ void MorseTree::build_tree(std::istream& stream) {
 }
 
 void MorseTree::insert(const char& chr, const std::string& string) {
+
    size_t size = string.size();
    BTNode<char>* curr = root;
    map[chr] = string;
@@ -104,8 +106,10 @@ std::string MorseTree::encode_letter(const char& chr) const {
 }
 
 char MorseTree::decode_letter(const std::string& letter_code) const {
+
    size_t size = letter_code.size();
    BTNode<char>* curr = root;
+
    if(size == 0)
       return '\0';
 
@@ -135,10 +139,12 @@ char MorseTree::decode_letter(const std::string& letter_code) const {
 }
 
 void MorseTree::encode_text(const std::string& str, std::ostream& out) const {
+
    out << encode_text(str) << "\n";
 }
 
 std::string MorseTree::encode_text(const std::string& str) const {
+
    std::istringstream istr(str);
    std::ostringstream ostr;
    char chr;
@@ -147,6 +153,7 @@ std::string MorseTree::encode_text(const std::string& str) const {
       and n the alphabet */
 
    istr >> std::noskipws;
+
    if(istr >> chr)
       ostr << encode_letter(chr);
    else
@@ -162,10 +169,12 @@ std::string MorseTree::encode_text(const std::string& str) const {
 }
 
 void MorseTree::decode_text(const std::string& str, std::ostream& out) const {
+
    out << decode_text(str) << "\n";
 }
 
 std::string MorseTree::decode_text(const std::string& str) const {
+
    std::istringstream istr(str);
    std::ostringstream ostr;
    std::string letter_code;
@@ -186,11 +195,13 @@ std::string MorseTree::decode_text(const std::string& str) const {
 
 /* To output directly */
 void MorseTree::print_tree(std::ostream& out) const {
+
    out << print_tree() << "\n";
 }
 
 /* Wrapper function */
 std::string MorseTree::print_tree() const {
+
    std::ostringstream ostr;
    BTNode<char>* local_root = root;
    print_tree(local_root,ostr);
@@ -198,6 +209,7 @@ std::string MorseTree::print_tree() const {
 }
 
 std::string MorseTree::print_tree(BTNode<char>* local_root, std::ostringstream& ostr) const {
+
    if(local_root == NULL) {
       ostr << "NULL" << "\n";
       return ostr.str();
@@ -212,10 +224,12 @@ std::string MorseTree::print_tree(BTNode<char>* local_root, std::ostringstream& 
 }
 
 void MorseTree::delete_tree() {
+
    delete_tree(root);
 }
 
 void MorseTree::delete_tree(BTNode<char>* local_root) {
+
    if(local_root == NULL)
       return;
 
