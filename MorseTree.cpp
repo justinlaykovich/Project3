@@ -93,8 +93,8 @@ std::string MorseTree::encode_letter(const char& chr) const {
    return find->second;
 }
 
-char MorseTree::decode_letter(const std::string& string) const {
-   size_t size = string.size();
+char MorseTree::decode_letter(const std::string& letter_code) const {
+   size_t size = letter_code.size();
    BTNode<char>* curr = root;
    if(size == 0)
       return '\0';
@@ -105,13 +105,13 @@ char MorseTree::decode_letter(const std::string& string) const {
    */
 
    for(size_t i = 0; i < size; i++) {
-      if(string[i] == LEFT) {
+      if(letter_code[i] == LEFT) {
          if(curr->left == NULL)
             throw std::runtime_error("Decoding failed: code does not map onto character.");
 
          curr = curr->left;
       }
-      else if(string[i] == RIGHT) {
+      else if(letter_code[i] == RIGHT) {
          if(curr->right == NULL)
             throw std::runtime_error("Decoding failed: code does not map onto character.");
 

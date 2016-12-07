@@ -28,18 +28,18 @@ public:
 
    void insert(const char&, const std::string&);
 
-   char decode_letter(const std::string&) const;
    std::string encode_letter(const char&) const;
-
-   std::string decode_text(const std::string&) const;
-   void decode_text(const std::string&, std::ostream&) const;
+   char decode_letter(const std::string&) const;
 
    std::string encode_text(const std::string&) const;
    void encode_text(const std::string&, std::ostream&) const;
 
+   std::string decode_text(const std::string&) const;
+   void decode_text(const std::string&, std::ostream&) const;
+
+   void print_tree(std::ostream&) const;
    std::string print_tree() const;
    std::string print_tree(BTNode<char>*, std::ostringstream&) const;
-   void print_tree(std::ostream&) const;
 private:
    char RIGHT;
    char LEFT;
