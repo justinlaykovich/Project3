@@ -93,7 +93,9 @@ std::string MorseTree::encode_letter(const char& chr) const {
       to be const (it is a query function), Map.find() is best choice.
 
       While decoding a bad message should probably through an error,
-      encoding plaintext should just discard non-existent characters.
+      encoding plaintext should just discard non-existent characters,
+      allowing phrases like "Three blind mice, see how they run." to
+      decode . encode to "three blind mice see how they run".
    */
 
    auto find = map.find(chr);
