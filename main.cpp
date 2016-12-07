@@ -1,3 +1,8 @@
+/*
+   Driver File.
+   Author: Justin Laykovich
+   CS303, Fall 2016
+*/
 #include<iostream>
 #include<fstream>
 #include<string>

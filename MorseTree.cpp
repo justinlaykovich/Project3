@@ -1,3 +1,9 @@
+/*
+   Implementation of MorseTree class
+   Author: Justin Laykovich
+   CS303, Fall 2016
+*/
+
 #include"MorseTree.h"
 
 MorseTree::MorseTree(const char& left = '.', const char& right = '_') {
@@ -42,7 +48,7 @@ void MorseTree::insert(const char& chr, const std::string& string) {
    /*
       Simple binary tree logic. This should actually correspond to
       the average case for a binary search tree, or O(log(n)) average insert,
-      as they are logically equivalent for a well-balanced tree.
+      as they are logically equivalent for a well-balanced morse tree.
    */
 
    for(size_t i = 0; i < size; i++) {
@@ -70,7 +76,14 @@ std::string MorseTree::encode_letter(const char& chr) const {
    /*
       It is assumed that a lowercase letter is code-equivalent to
       an upper case letter unless specified.
+
+      Map.find() is O(log(n)) and so is Map.at() and Map[]. Since I want encode_letter
+      to be const (it is a query function), Map.find() is best choice.
+
+      While decoding a bad message should probably through an error,
+      encoding plaintext should just discard non-existent characters.
    */
+
    auto find = map.find(chr);
 
    if(find == map.end())
@@ -88,7 +101,7 @@ char MorseTree::decode_letter(const std::string& string) const {
 
    /*
       Pretty simple tree logic. Traverse the tree, code corresponds to
-      right or left, print code if valid and non-empty. 
+      right or left, print code if valid and non-empty.
    */
 
    for(size_t i = 0; i < size; i++) {
@@ -120,6 +133,9 @@ std::string MorseTree::encode_text(const std::string& str) const {
    std::ostringstream ostr;
    char chr;
 
+   /* Fetches characters iteratively, decoding at m log(n), m the characters to encode
+      and n the alphabet */
+
    istr >> std::noskipws;
    while(istr >> chr)
       if(chr == ' ')
@@ -137,17 +153,21 @@ void MorseTree::decode_text(const std::string& str, std::ostream& out) const {
 std::string MorseTree::decode_text(const std::string& str) const {
    std::istringstream istr(str);
    std::ostringstream ostr;
-   std::string word;
+   std::string letter_code;
+
+   /* Decodes a letter at a time. / was chosen as word delimeter. */
 
    istr >> std::skipws;
-   while(istr >> word)
-      if(word == "/")
+   while(istr >> letter_code)
+      if(letter_code == "/")
          ostr << " ";
       else
-         ostr << decode_letter(word);
+         ostr << decode_letter(letter_code);
 
    return ostr.str();
 }
+
+/* print_trees are useful to see that the tree has actually been built and built correctly. */
 
 /* To output directly */
 void MorseTree::print_tree(std::ostream& out) const {

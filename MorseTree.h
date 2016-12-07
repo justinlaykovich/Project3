@@ -38,8 +38,6 @@ public:
 private:
    char RIGHT;
    char LEFT;
-   char DELIM_LETTER;
-   char DELIM_WORD;
    BTNode<char>* root;
    std::map<char,std::string> map;
 };
