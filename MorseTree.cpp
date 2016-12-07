@@ -147,11 +147,16 @@ std::string MorseTree::encode_text(const std::string& str) const {
       and n the alphabet */
 
    istr >> std::noskipws;
+   if(istr >> chr)
+      ostr << encode_letter(chr);
+   else
+      return "";
+
    while(istr >> chr)
       if(chr == ' ')
-         ostr << "/ ";
+         ostr << " /";
       else
-         ostr << encode_letter(chr) << ' ';
+         ostr << ' ' << encode_letter(chr);
 
    return ostr.str();
 }
