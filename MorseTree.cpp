@@ -198,7 +198,7 @@ std::string MorseTree::print_tree(BTNode<char>* local_root, std::ostringstream& 
       return ostr.str();
    }
 
-   /* Print tree inorder. */
+   /* Print tree preorder. */
 
    ostr << local_root->data << "\n";
    print_tree(local_root->left,ostr);
