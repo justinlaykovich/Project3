@@ -21,5 +21,6 @@ int main() {
 
    tree.encode_text("Three blind mice, see how they run.", std::cout);
    tree.decode_text(tree.encode_text("Three blind mice, see how they run."), std::cout);
+
    return 0;
 }
