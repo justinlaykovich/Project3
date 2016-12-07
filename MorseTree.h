@@ -1,3 +1,8 @@
+/*
+   MorseTree interface.
+   Author: Justin Laykovich
+   CS303, Fall 2016
+*/
 #ifndef _MORSETREE_H_
 #define _MORSETREE_H_
 #include<string>
