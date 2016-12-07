@@ -3,13 +3,10 @@
    Author: Justin Laykovich
    CS303, Fall 2016
 */
+#include"MorseTree.cpp"
 #include<iostream>
 #include<fstream>
 #include<string>
-#include"MorseTree.cpp"
-
-using std::cout;
-using std::endl;
 
 int main() {
    std::ifstream file("morse.txt");

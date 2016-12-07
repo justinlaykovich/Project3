@@ -137,7 +137,7 @@ char MorseTree::decode_letter(const std::string& letter_code) const {
 }
 
 void MorseTree::encode_text(const std::string& str, std::ostream& out) const {
-   out << encode_text(str) << std::endl;
+   out << encode_text(str) << "\n";
 }
 
 std::string MorseTree::encode_text(const std::string& str) const {
@@ -159,7 +159,7 @@ std::string MorseTree::encode_text(const std::string& str) const {
 }
 
 void MorseTree::decode_text(const std::string& str, std::ostream& out) const {
-   out << decode_text(str) << std::endl;
+   out << decode_text(str) << "\n";
 }
 
 std::string MorseTree::decode_text(const std::string& str) const {
@@ -183,7 +183,7 @@ std::string MorseTree::decode_text(const std::string& str) const {
 
 /* To output directly */
 void MorseTree::print_tree(std::ostream& out) const {
-   std::cout << print_tree() << std::endl;
+   out << print_tree() << "\n";
 }
 
 /* Wrapper function */
@@ -196,13 +196,13 @@ std::string MorseTree::print_tree() const {
 
 std::string MorseTree::print_tree(BTNode<char>* local_root, std::ostringstream& ostr) const {
    if(local_root == NULL) {
-      ostr << "NULL" << std::endl;
+      ostr << "NULL" << "\n";
       return ostr.str();
    }
 
    /* Print tree inorder. */
 
-   ostr << local_root->data << std::endl;
+   ostr << local_root->data << "\n";
    print_tree(local_root->left,ostr);
    print_tree(local_root->right,ostr);
    return ostr.str();

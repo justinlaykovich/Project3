@@ -6,7 +6,6 @@
 #ifndef _MORSETREE_H_
 #define _MORSETREE_H_
 #include<string>
-#include<iostream>
 #include<map>
 #include<sstream>
 #include<stdexcept>
