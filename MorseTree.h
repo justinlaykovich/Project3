@@ -22,9 +22,11 @@ struct BTNode {
 
 class MorseTree {
 public:
-   MorseTree(const char&,const char&);
    ~MorseTree();
+   MorseTree(const char&,const char&);
    MorseTree(std::istream&,const char&,const char&);
+
+   void build_tree(std::istream&);
 
    void insert(const char&, const std::string&);
 
@@ -43,8 +45,10 @@ public:
 private:
    char RIGHT;
    char LEFT;
-   BTNode<char>* root;
+   BTNode<char>* root = NULL;
    std::map<char,std::string> map;
+   void delete_tree();
+   void delete_tree(BTNode<char>*);
 };
 
 #endif

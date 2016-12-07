@@ -7,21 +7,33 @@
 #include"MorseTree.h"
 
 MorseTree::MorseTree(const char& left = '.', const char& right = '_') {
-   root = new BTNode<char>;
-
-   /* I allow specifying different binary codes, though ./_ is default. */
+   /* Allows declaration of different binary code. */
 
    RIGHT = right;
    LEFT = left;
 }
 
 MorseTree::~MorseTree() {
-   delete(root);
+
+   delete_tree();
 }
 
 MorseTree::MorseTree(std::istream& stream, const char& left = '.', const char& right='_') : MorseTree(left,right) {
+
+   build_tree(stream);
+}
+
+void MorseTree::build_tree(std::istream& stream) {
+
+   /* Get rid of old tree, if it exists. */
+
+   if(root != NULL)
+      delete_tree();
+
    std::string line;
    char chr;
+
+   root = new BTNode<char>;
 
    /*
       Build tree.
@@ -194,4 +206,17 @@ std::string MorseTree::print_tree(BTNode<char>* local_root, std::ostringstream& 
    print_tree(local_root->left,ostr);
    print_tree(local_root->right,ostr);
    return ostr.str();
+}
+
+void MorseTree::delete_tree() {
+   delete_tree(root);
+}
+
+void MorseTree::delete_tree(BTNode<char>* local_root) {
+   if(local_root == NULL)
+      return;
+
+   delete_tree(local_root->right);
+   delete_tree(local_root->left);
+   delete(local_root);
 }
