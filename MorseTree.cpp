@@ -42,14 +42,12 @@ void MorseTree::build_tree(std::istream& stream) {
    */
 
    stream >> std::skipws;
-   while(stream >> chr) {
-      if(stream >> line) {
-         map[chr] = line;
+   while(stream >> chr)
+      if(stream >> line)
          insert(chr,line);
-      }
       else
          throw std::runtime_error("Improper formatting: only one character on last line.");
-   }
+
 }
 
 void MorseTree::insert(const char& chr, const std::string& string) {
