@@ -14,14 +14,14 @@ MorseTree::MorseTree(const char& left = '.', const char& right = '_') {
    LEFT = left;
 }
 
-MorseTree::~MorseTree() {
-
-   delete_tree();
-}
-
 MorseTree::MorseTree(std::istream& stream, const char& left = '.', const char& right='_') : MorseTree(left,right) {
 
    build_tree(stream);
+}
+
+MorseTree::~MorseTree() {
+
+   delete_tree();
 }
 
 void MorseTree::build_tree(std::istream& stream) {

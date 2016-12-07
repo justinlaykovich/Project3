@@ -3,6 +3,7 @@
    Author: Justin Laykovich
    CS303, Fall 2016
 */
+
 #include"MorseTree.cpp"
 #include<iostream>
 #include<fstream>
@@ -13,11 +14,13 @@ int main() {
    MorseTree tree(file);
    file.close();
 
-   tree.encode_text("abcdefghijklmnopqrstuvwxyz", std::cout);
-   tree.decode_text(tree.encode_text("abcdefghijklmnopqrstuvwxyz"), std::cout);
+   std::string test = "abcdefghijklmnopqrstuvwxyz";
+   tree.encode_text(test, std::cout);
+   tree.decode_text(tree.encode_text(test), std::cout);
 
-   tree.encode_text("Three blind mice, see how they run.", std::cout);
-   tree.decode_text(tree.encode_text("Three blind mice, see how they run."), std::cout);
+   test = "Three blind mice, see how they run.";
+   tree.encode_text(test, std::cout);
+   tree.decode_text(tree.encode_text(test), std::cout);
 
    return 0;
 }

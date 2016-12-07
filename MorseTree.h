@@ -21,9 +21,10 @@ struct BTNode {
 
 class MorseTree {
 public:
-   ~MorseTree();
    MorseTree(const char&,const char&);
    MorseTree(std::istream&,const char&,const char&);
+
+   ~MorseTree();
 
    void build_tree(std::istream&);
 
