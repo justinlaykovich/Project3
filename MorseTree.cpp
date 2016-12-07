@@ -149,7 +149,7 @@ std::string MorseTree::encode_text(const std::string& str) const {
    istr >> std::noskipws;
    while(istr >> chr)
       if(chr == ' ')
-         ostr << " / ";
+         ostr << "/ ";
       else
          ostr << encode_letter(chr) << ' ';
 
