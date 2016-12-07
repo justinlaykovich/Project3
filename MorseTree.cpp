@@ -92,7 +92,7 @@ std::string MorseTree::encode_letter(const char& chr) const {
       Map.find() is O(log(n)) and so is Map.at() and Map[]. Since I want encode_letter
       to be const (it is a query function), Map.find() is best choice.
 
-      While decoding a bad message should probably through an error,
+      While decoding a bad message should probably throw an error,
       encoding plaintext should just discard non-existent characters,
       allowing phrases like "Three blind mice, see how they run." to
       decode . encode to "three blind mice see how they run".
